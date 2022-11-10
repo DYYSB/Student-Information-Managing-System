@@ -73,13 +73,15 @@ _STUDENT* createData()
 
 void outputNode(_STUDENT* p)        //输出链表，即输出所有的学生信息，传入值是表头地址
 {
-    int i = 0;                   //把p指针定位到链表的第一个非表头元素
+    int i = 0;    //把p指针定位到链表的第一个非表头元素
+    std::cout << "Serial" << '\t' << "ID" << '\t' << "Name" << '\t' << "Birthday" << '\t' << "Sex" << '\t';
+    std::cout << "Score1" << '\t' << "Score2" << '\t' << "Score3" << '\t' << "Score4" << '\t' << "Total" << std::endl;
     do
     {
         p = p->next;
         i++;
         std::cout << i << ".\t" << p->id << '\t' << p->name << '\t' << p->birth.year << '/' << p->birth.month << '/' << p->birth.day << '\t';
-        std::cout << p->sex << '\t' << p->score1 << '\t' << p->score2 << '\t' << p->score3 << '\t' << p->score4 << std::endl;
+        std::cout << p->sex << '\t' << p->score1 << '\t' << p->score2 << '\t' << p->score3 << '\t' << p->score4 << '\t' << p->score1 + p->score2 + p->score3 + p->score4 << std::endl;
     } while (p->next != NULL);
 }
 
@@ -151,11 +153,13 @@ void writeToFile(_STUDENT* p)
     }
     std::ofstream file1;
     file1.open("student_info.txt", std::ios::out);
+    file1 << "ID" << '\t' << "Name" << '\t' << "Birthday" << '\t' << "Sex" << '\t';
+    file1 << "Score1" << '\t' << "Score2" << '\t' << "Score3" << '\t' << "Score4" << '\t' << "Total" << '\n';
     do
     {
         p = p->next;
         file1 << p->id << '\t' << p->name << '\t' << p->birth.year << '/' << p->birth.month << '/' << p->birth.day << '\t';
-        file1 << p->sex << '\t' << p->score1 << '\t' << p->score2 << '\t' << p->score3 << '\t' << p->score4 << '\n';
+        file1 << p->sex << '\t' << p->score1 << '\t' << '\t' << p->score2 << '\t' << '\t' << p->score3 << '\t' << '\t' << p->score4 << '\t' << '\t' << p->score1 + p->score2 + p->score3 + p->score4 << '\n';
     } while (p->next != NULL);
     file1.close();
 }

@@ -16,10 +16,12 @@ void outputHello()
     std::cout << "              3.Show information" << std::endl << std::endl;
     std::cout << "              4.Write information to file" << std::endl << std::endl;
     std::cout << "              5.Add information" << std::endl << std::endl;
-    std::cout << "              6.Search by name" << std::endl << std::endl;
-    std::cout << "              7.Search the youngest" << std::endl << std::endl;
-    std::cout << "              8.Calculate average score and pass rate" << std::endl << std::endl;
-    std::cout << "              9.Exit" << std::endl << std::endl;
+    std::cout << "              6.Sort by ID" << std::endl << std::endl;
+    std::cout << "              7.Sort by particular score/total score" << std::endl << std::endl;
+    std::cout << "              8.Search by name" << std::endl << std::endl;
+    std::cout << "              9.Search the youngest" << std::endl << std::endl;
+    std::cout << "             10.Calculate average score and pass rate" << std::endl << std::endl;
+    std::cout << "             11.Exit" << std::endl << std::endl;
     std::cout << "-------------------------------------------------------" << std::endl << std::endl;
     std::cout << "Please input your choice:  ";
 }
@@ -53,7 +55,7 @@ int main()
 
         case 3:
             system("cls");
-            if (head != NULL)
+            if (head != NULL && head->next != NULL)
             {
                 outputNode(head);
             }
@@ -68,7 +70,7 @@ int main()
 
         case 4:
             system("cls");
-            if (head != NULL)
+            if (head != NULL && head->next != NULL)
             {
                 writeToFile(head);
                 std::cout << "Information has been written to \"student_info.txt\". Press any key to continue...";
@@ -118,9 +120,37 @@ int main()
         }
 
         case 6:
+            system("cls");
+            std::cout << "Note that this will not make changes to the original sort of information." << std::endl;
+            std::cout << "Press any key to continue...";
+            std::cin.ignore();
+            std::cin.get();
+            copyToSort(head, 0);
+            std::cout << "Press any key to continue...";
+            //std::cin.ignore();
+            std::cin.get();
+            break;
+
+        case 7:
+            system("cls");
+            int choice2;
+            std::cout << "Which score would you like the information to be sorted by?" << std::endl;
+            std::cout << "Use 1 to indicate score1, 2 to indicate score2, etc., and 5 to indicate total score." << std::endl;
+            std::cin >> choice2;
+            std::cout << "Note that this will not make changes to the original sort of information." << std::endl;
+            std::cout << "Press any key to continue...";
+            std::cin.ignore();
+            std::cin.get();
+            copyToSort(head, choice2);
+            std::cout << "Press any key to continue...";
+            //std::cin.ignore();
+            std::cin.get();
+            break;
+
+        case 8:
         {
             system("cls");
-            if (head != NULL)
+            if (head != NULL && head->next != NULL)
             {
                 std::string stuname;
                 std::cout << "Input the student's name: " << std::endl;
@@ -152,9 +182,9 @@ int main()
             break;
         }
             
-        case 7:
+        case 9:
             system("cls");
-            if (head != NULL)
+            if (head != NULL && head->next != NULL)
             {
                 _STUDENT* minage = searchMinAge(head);
                 std::cout << minage->id << ' ' << minage->name << ' ' << minage->birth.year << '/' << minage->birth.month << '/' << minage->birth.day << ' ';
@@ -169,9 +199,9 @@ int main()
             std::cin.get();
             break;
 
-        case 8:
+        case 10:
             system("cls");
-            if (head != NULL)
+            if (head != NULL && head->next != NULL)
             {
                 std::cout << "Please input the number of subject you want to calculate: ";
                 int i;
@@ -187,9 +217,9 @@ int main()
             std::cin.get();
             break;
 
-        case 9:
+        case 11:
         {
-            if (head != NULL)
+            if (head != NULL && head->next != NULL)
             {
                 _STUDENT* p = head->next;
                 _STUDENT* r = head;
